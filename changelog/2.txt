@@ -1,0 +1,3 @@
+```release-note:improvement
+ci: Run prek on pull requests and in the merge queue.
+```

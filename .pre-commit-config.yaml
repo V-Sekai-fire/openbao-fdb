@@ -1,0 +1,20 @@
+# Baseline hygiene: these hooks report and never rewrite files.
+# Lockfiles, fixtures, binary formats and vendored trees are excluded
+# because fixtures are compared byte for byte.
+exclude: '(^|/)(vendor|third_party|thirdparty|build)/|\.(lock|usd[a-z]?|parquet|svg|png|jpe?g|webp|lean|glb|gltf|ppm|bin)$|(^|/)package-lock\.json$'
+repos:
+  - repo: builtin
+    hooks:
+      - id: check-merge-conflict
+        args: [--assume-in-merge]
+      - id: check-case-conflict
+      - id: check-added-large-files
+        args: [--maxkb=1024]
+      - id: detect-private-key
+        exclude: '^api/test\-fixtures/keys/bad\-key\.pem$|^api/test\-fixtures/keys/key\.pem$|^api/test\-fixtures/root/rootcakey\.pem$|^internal/builtin/credential/jwt/path_login_test\.go$|^internal/builtin/logical/pki/backend_test\.go$|^internal/builtin/logical/pki/crl_test\.go$|^internal/builtin/logical/pki/storage_migrations_test\.go$|^internal/builtin/logical/ssh/backend_test\.go$|^internal/builtin/logical/ssh/path_config_ca_test\.go$|^internal/builtin/logical/transit/path_sign_verify_test\.go$|^internal/command/agent/test\-fixtures/reload/reload_bar\.key$|^internal/command/agent/test\-fixtures/reload/reload_foo\.key$|^internal/command/agent/testing\.go$|^internal/command/agentproxyshared/auth/cert/test\-fixtures/keys/key\.pem$|^internal/command/agentproxyshared/auth/cert/test\-fixtures/keys/pkioutput$|^internal/command/agentproxyshared/auth/cert/test\-fixtures/root/pkioutput$|^internal/command/agentproxyshared/auth/cert/test\-fixtures/root/rootcakey\.pem$|^internal/command/proxy/test\-fixtures/reload/reload_bar\.key$|^internal/command/proxy/test\-fixtures/reload/reload_foo\.key$|^internal/command/server/test\-fixtures/reload/reload_bar\.key$|^internal/command/server/test\-fixtures/reload/reload_foo\.key$|^internal/vault/diagnose/test\-fixtures/|^ui/tests/helpers/pki/values\.js$|^ui/tests/integration/components/pki/page/pki\-certificate\-details\-test\.js$|^ui/tests/integration/components/pki/page/pki\-issuer\-rotate\-root\-test\.js$|^ui/tests/integration/components/pki/pki\-generate\-csr\-test\.js$|^website/content/community/rfcs/control\-groups\.mdx$|^website/content/docs/api/secret/pki\.mdx$|^website/content/docs/api/secret/ssh\.mdx$|^website/content/docs/api/system/storage/raft\.mdx$|^website/content/docs/secrets/pki/quick\-start\-intermediate\-ca\.mdx$|^website/content/docs/secrets/pki/quick\-start\-root\-ca\.mdx$|^website/content/docs/secrets/pki/setup\.mdx$'
+      - id: check-yaml
+        exclude: '^internal/builtin/credential/kubernetes/integrationtest/vault/namespaceControllerBinding\.yaml$|^internal/builtin/logical/kubernetes/integrationtest/vault/testBindings\.yaml$|^internal/builtin/logical/kubernetes/integrationtest/vault/testRoles\.yaml$|^internal/builtin/logical/kubernetes/integrationtest/vault/testServiceAccounts\.yaml$'
+      - id: check-toml
+      - id: check-json
+        exclude: '^ui/tsconfig\.json$|^website/tsconfig\.json$'
+      - id: check-xml
